@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Vishal Lall "vishal.lall@caci.com"
+MAINTAINER V Lall
 LABEL Description="Dockerfile for bitcoin blockchain" Version="0.1"
 EXPOSE 5000
 
