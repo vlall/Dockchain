@@ -2,7 +2,8 @@ FROM ubuntu:14.04
 MAINTAINER V Lall
 LABEL Description="Dockerfile for bitcoin blockchain" Version="0.2"
 
-RUN apt-get update && apt-get install -y 
+RUN apt-get update && apt-get install -y \
+    build-essential \
     curl \
     python-dev \
     python-pip \
