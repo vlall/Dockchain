@@ -19,6 +19,11 @@ RUN apt-get update && apt-get install -y \
 RUN pip install \
     flask \
     flask-api
+    
+RUN mkdir ~/Downloads
+WORKDIR ~/Downloads
+RUN wget http://dumps.webbtc.com/bitcoin/bitcoin_2016-04-01.sql.gz
+RUN git clone https://github.com/vlall/dockchain
 
 #  Ingest to Postgres
 USER postgres
@@ -27,11 +32,7 @@ RUN /etc/init.d/postgresql start &&\
     createdb -O docker blockchain
 RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.conf
 RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
-RUN mkdir ~/Downloads
-WORKDIR ~/Downloads
-RUN wget http://dumps.webbtc.com/bitcoin/bitcoin_2016-04-01.sql.gz
 RUN gzip bitcoin_2014-02-28.sql.gz | psql -U docker blockchain
-RUN git clone https://github.com/vlall/dockchain
 
 EXPOSE 5432
 VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
