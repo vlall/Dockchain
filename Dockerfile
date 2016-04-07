@@ -29,7 +29,7 @@ RUN echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.3/main/pg_hba.co
 RUN echo "listen_addresses='*'" >> /etc/postgresql/9.3/main/postgresql.conf
 RUN mkdir ~/Downloads
 WORKDIR ~/Downloads
-RUN wget http://dumps.webbtc.com/bitcoin/bitcoin_2014-02-28.sql.gz
+RUN wget http://dumps.webbtc.com/bitcoin/bitcoin_2016-04-01.sql.gz
 RUN gzip bitcoin_2014-02-28.sql.gz | psql -U docker blockchain
 RUN git clone https://github.com/vlall/dockchain
 
